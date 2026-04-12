@@ -222,6 +222,7 @@ public class MenuPembeli {
             }
 
         } while (pilih != 0);
-        sc.close();
+        loginDashboard.main(null);
+        
     }
 }

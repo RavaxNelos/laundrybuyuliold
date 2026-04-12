@@ -68,11 +68,12 @@ public class loginDashboard {
                         
                     } catch (Exception e) {
                         // TODO: handle exception
-                        System.out.println("Login sebagai: " + loginUser.nama);
+                        
 
                     }
                     if (!error && login) {
                         // MASUK KE MENU PEMBELI
+                        System.out.println("Login sebagai: " + loginUser.nama);
                         MenuPembeli.main(null, loginUser);
                         break;
                     }
@@ -80,6 +81,7 @@ public class loginDashboard {
             }
 
         } while (choose != 0);
+        System.exit(choose);
         sc.close();
     }
 }
