@@ -10,6 +10,7 @@ public class MenuPembeli {
     }
     // pengecekan akun customer setelah login
     public static void main(String[] args, Customer userLogin) {
+        
         Scanner sc = new Scanner(System.in);
         String password = "";
         ArrayList<Customer> customers = new ArrayList<>();
@@ -49,53 +50,6 @@ public class MenuPembeli {
             switch (pilih) {
 
                 case 1:
-                    // INPUT CUSTOMER
-                    int nextNum = customers.isEmpty() ? 1 : customers.size() + 1;
-                    String id = "CUST" + nextNum;
-
-                    System.out.println("ID Customer: " + id);
-
-                    String nama;
-                    do {
-                        System.out.print("Nama (max 10 huruf): ");
-                        nama = sc.nextLine();
-
-                        if (!nama.matches("[a-zA-Z ]+")) {
-                            System.out.println("Nama hanya huruf!");
-                        } else if (nama.length() > 10) {
-                            System.out.println("Maksimal 10 karakter!");
-                        }
-
-                    } while (!nama.matches("[a-zA-Z ]+") || nama.length() > 10);
-
-                    String hp;
-                    do {
-                        System.out.print("No HP (max 13 digit): ");
-                        hp = sc.nextLine();
-
-                        if (!hp.matches("[0-9]+")) {
-                            System.out.println("Hanya angka!");
-                        } else if (hp.length() > 13) {
-                            System.out.println("Maksimal 13 digit!");
-                        }
-
-                    } while (!hp.matches("[0-9]+") || hp.length() > 13);
-
-                    String alamat;
-                    do {
-                        System.out.print("Alamat (huruf saja): ");
-                        alamat = sc.nextLine();
-
-                        if (!alamat.matches("[a-zA-Z ]+")) {
-                            System.out.println("Hanya huruf!");
-                        }
-
-                    } while (!alamat.matches("[a-zA-Z ]+"));
-
-                    Customer cust = new Customer(id, nama, hp, alamat, password);
-                    customers.add(cust);
-                    customerManage.simpanCustomer(cust); // simpan ke file
-
                     // PILIH LAYANAN
                     System.out.println("\n--- DAFTAR LAYANAN ---");
                     for (LaundryService ls : services) {
@@ -166,7 +120,7 @@ public class MenuPembeli {
 
                     // BUAT ORDER
                     Order o = new Order("ORD" + (orders.size() + 1),
-                            cust,
+                            userLogin,
                             layananDipilih,
                             berat,
                             antar);
@@ -181,12 +135,15 @@ public class MenuPembeli {
                         System.out.println("Tidak ada data order ditemukan di file!");
                         break;
                     }
-
+                    
                     System.out.println("\n--- DAFTAR SEMUA ORDER ---");
                     for (Order ord : orders) {
-                        System.out.printf("ID: %-7s | Nama: %-10s | Total: Rp%-8s | [%s]\n",
-                                ord.idOrder, ord.customer.nama, ord.harga,
-                                (ord.sudahBayar ? "Sudah Bayar" : "Belum Bayar"));
+                        if (ord.customer.nama.equalsIgnoreCase(userLogin.nama)) {
+                            System.out.printf("ID: %-7s | Nama: %-10s | Total: Rp%-8s | [%s]\n",
+                                    ord.idOrder, ord.customer.nama, ord.harga,
+                                    (ord.sudahBayar ? "Sudah Bayar" : "Belum Bayar"));
+                        }
+                        
                     }
 
                     Order orderKetemu = null;
