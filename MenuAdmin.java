@@ -1,7 +1,7 @@
 import java.util.ArrayList; // import class ArrayList untuk menyimpan banyak data
 import java.util.Scanner; // import Scanner untuk input dari user
 
-public class MainLaundry { // class utama program
+public class MenuAdmin { // class utama program
     public static void main(String[] args) { // method utama (entry point program)
 
         Scanner sc = new Scanner(System.in); // membuat object Scanner untuk input

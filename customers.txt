@@ -1,2 +1,7 @@
 CUST1|rava|082332724688|jl. kalijudan 9 trembesi no 06|123
 CUST2|farhan|0823842389424|Jl. Sidoarjo 09|123
+CUST3|bhinar|0834957384|Jl. Kalijudan 09|123
+CUST4|rivan|0824732942|Jl. madiun|123
+CUST5|khalila|0823843242|Jl. smolo|12
+CUST6|raul|0843854353|jl usi|123
+CUST7|yudisium|0834857353|jl kuliah|123
