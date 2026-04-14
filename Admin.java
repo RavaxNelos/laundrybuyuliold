@@ -30,14 +30,32 @@ public class Admin extends User {// Admin mewarisi User
     public void updateStatus(int index) {
         Order o = orders.get(index);
 
-        if (o.status == StatusLaundry.SELESAI) {
-            System.out.println("Laundry sudah selesai!");
-            return;
+        switch (o.status) {
+            case DITERIMA:
+                if (o.service.butuhCuci) {
+                    o.status = StatusLaundry.DICUCI;
+                } else if (o.service.butuhSetrika) {
+                    o.status = StatusLaundry.DISETRIKA;
+                }
+                break;
+
+            case DICUCI:
+                if (o.service.butuhSetrika) {
+                    o.status = StatusLaundry.DISETRIKA;
+                } else {
+                    o.status = StatusLaundry.SELESAI;
+                }
+                break;
+
+            case DISETRIKA:
+                o.status = StatusLaundry.SELESAI;
+                break;
+
+            case SELESAI:
+                System.out.println("Laundry sudah selesai!");
+                return;
         }
-        // menaikkan status ke tahap berikutnya
-        if (o.status.ordinal() < StatusLaundry.SELESAI.ordinal()) {
-            o.status = StatusLaundry.values()[o.status.ordinal() + 1];
-            System.out.println("Status: " + o.status);
-        }
+
+        System.out.println("Status sekarang: " + o.status);
     }
 }

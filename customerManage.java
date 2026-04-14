@@ -84,7 +84,18 @@ public class customerManage {
 
                 // Buat objek pendukung (Dummy/Sederhana karena kita hanya butuh Nama & Layanan)
                 Customer tempCust = new Customer("CUST_TEMP", data[1], "", "", "");
-                LaundryService tempServ = new LaundryService("", data[2], 0, 0);
+                LaundryService tempServ = null;
+
+                for (LaundryService s : services) {
+                    if (s.namaLayanan.equalsIgnoreCase(data[2])) {
+                        tempServ = s;
+                        break;
+                    }
+                }
+                if (tempServ == null) {
+                    System.out.println("Service tidak ditemukan: " + data[2]);
+                    continue; // lompat ke data berikutnya
+                }
 
                 // Buat objek Order berdasarkan data file
                 Order o = new Order(data[0], tempCust, tempServ, Double.parseDouble(data[3]), false);

@@ -8,9 +8,10 @@ public class MenuPembeli {
         int padding = (width - text.length()) / 2;
         return " ".repeat(Math.max(0, padding)) + text;
     }
+
     // pengecekan akun customer setelah login
     public static void main(String[] args, Customer userLogin) {
-        
+
         Scanner sc = new Scanner(System.in);
         String password = "";
         ArrayList<Customer> customers = new ArrayList<>();
@@ -18,12 +19,12 @@ public class MenuPembeli {
         ArrayList<LaundryService> services = new ArrayList<>();
 
         // isi layanan
-        services.add(new LaundryService("SRV1", "Cuci Basah", 5000, 2));
-        services.add(new LaundryService("SRV2", "Cuci Kering", 6000, 2));
-        services.add(new LaundryService("SRV3", "Setrika", 4000, 1));
-        services.add(new LaundryService("SRV4", "Cuci + Setrika", 7000, 2));
-        services.add(new LaundryService("SRV5", "Karpet", 8000, 3));
-        services.add(new LaundryService("SRV6", "Bed Cover", 10000, 3));
+        services.add(new LaundryService("SRV1", "Cuci Basah", 5000, 2, true, false));
+        services.add(new LaundryService("SRV2", "Cuci Kering", 6000, 2, true, false));
+        services.add(new LaundryService("SRV3", "Setrika", 4000, 1, false, true));
+        services.add(new LaundryService("SRV4", "Cuci + Setrika", 7000, 2, true, true));
+        services.add(new LaundryService("SRV5", "Cuci Karpet", 8000, 3, true, false));
+        services.add(new LaundryService("SRV6", "Cuci Bed Cover", 10000, 3, true, false));
 
         // jalankan menu pembeli
         customerManage.loadCustomerDariFile(customers);
@@ -135,7 +136,7 @@ public class MenuPembeli {
                         System.out.println("Tidak ada data order ditemukan di file!");
                         break;
                     }
-                    
+
                     System.out.println("\n--- DAFTAR SEMUA ORDER ---");
                     for (Order ord : orders) {
                         if (ord.customer.nama.equalsIgnoreCase(userLogin.nama)) {
@@ -143,7 +144,7 @@ public class MenuPembeli {
                                     ord.idOrder, ord.customer.nama, ord.harga,
                                     (ord.sudahBayar ? "Sudah Bayar" : "Belum Bayar"));
                         }
-                        
+
                     }
 
                     Order orderKetemu = null;
@@ -180,6 +181,6 @@ public class MenuPembeli {
 
         } while (pilih != 0);
         loginDashboard.main(null);
-        
+
     }
 }

@@ -1,2 +1,2 @@
-CUST1|Farhan|085733166486|Sidoarjo|memekdo
-CUST2|rava|082332724688|jl. kalijudan trembesi 06|123
+CUST1|rava|082332724688|jl. kalijudan 9 trembesi no 06|123
+CUST2|farhan|0823842389424|Jl. Sidoarjo 09|123

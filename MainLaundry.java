@@ -10,12 +10,12 @@ public class MainLaundry { // class utama program
         ArrayList<LaundryService> services = new ArrayList<>(); // list menyimpan layanan laundry
 
         // menambahkan data layanan laundry
-        services.add(new LaundryService("SRV1", "Cuci Basah", 5000, 2));
-        services.add(new LaundryService("SRV2", "Cuci Kering", 6000, 2));
-        services.add(new LaundryService("SRV3", "Setrika", 4000, 1));
-        services.add(new LaundryService("SRV4", "Cuci + Setrika", 7000, 2));
-        services.add(new LaundryService("SRV5", "Karpet", 8000, 3));
-        services.add(new LaundryService("SRV6", "Bed Cover", 10000, 3));
+        services.add(new LaundryService("SRV1", "Cuci Basah", 5000, 2, true, false));
+        services.add(new LaundryService("SRV2", "Cuci Kering", 6000, 2, true, false));
+        services.add(new LaundryService("SRV3", "Setrika", 4000, 1, false, true));
+        services.add(new LaundryService("SRV4", "Cuci + Setrika", 7000, 2, true, true));
+        services.add(new LaundryService("SRV5", "Cuci Karpet", 8000, 3, true, false));
+        services.add(new LaundryService("SRV6", "Cuci Bed Cover", 10000, 3, true, false));
 
         // membuat object Admin (inherit dari User)
         Admin admin = new Admin("ADM1", "Admin Utama", "08123456789", customers, orders);
@@ -147,5 +147,4 @@ public class MainLaundry { // class utama program
         sc.close();
     }
 
-    
 }
